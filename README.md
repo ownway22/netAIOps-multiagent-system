@@ -49,48 +49,21 @@ cd {{PROJECT_NAME}}
 ├── .github/
 │   ├── copilot-instructions.md       # Copilot 全域指引
 │   ├── instructions/                 # 條件式指令（依檔案類型套用）
-│   │   ├── angular.instructions.md
-│   │   ├── backend.instructions.md
-│   │   ├── code-review-generic.instructions.md
-│   │   ├── containerization-docker-best-practices.instructions.md
-│   │   ├── database.instructions.md
-│   │   ├── frontend.instructions.md
-│   │   ├── java.instructions.md
-│   │   ├── python.instructions.md
-│   │   ├── security-and-owasp.instructions.md
-│   │   └── taming-copilot.instructions.md
 │   ├── prompts/                      # 自訂 prompt 檔案
-│   │   ├── code-review.prompt.md
-│   │   ├── commit-message.prompt.md
-│   │   └── speckit.*.prompt.md
 │   ├── agents/                       # 自訂 agent 模式
-│   │   ├── planner.agent.md
-│   │   └── speckit.*.agent.md
 │   └── skills/                       # 自訂 skills
-│       ├── azure-devops-cli/
-│       ├── copilot-sdk/
-│       ├── gh-cli/
-│       ├── git-commit/
-│       └── microsoft-docs/
 ├── .claude/
 │   ├── settings.json                 # Claude Code 專案設定
 │   ├── settings.local.json           # 個人本地設定（不提交）
 │   ├── commands/                     # Claude slash commands
-│   │   ├── plan.md
-│   │   └── review.md
 │   ├── rules/                        # Claude 規則檔案
 │   ├── skills/                       # Claude skills
 │   └── agents/                       # Claude agents
 ├── .specify/                         # SpecKit 規格工作流程
-│   ├── memory/                       # 專案憲章與記憶
-│   │   └── constitution.md
+│   ├── memory/
+│   │   └── constitution.md           # 專案憲章與記憶
 │   ├── scripts/                      # 自動化腳本
 │   └── templates/                    # 範本檔案
-│       ├── agent-file-template.md
-│       ├── checklist-template.md
-│       ├── plan-template.md
-│       ├── spec-template.md
-│       └── tasks-template.md
 ├── .vscode/
 │   ├── extensions.json               # 推薦擴充套件
 │   ├── mcp.json                      # MCP 伺服器設定
