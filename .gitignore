@@ -19,6 +19,10 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Local-only config (not shared)
+CLAUDE.local.md
+.claude/settings.local.json
+
 # Build
 dist/
 build/
