@@ -1,0 +1,22 @@
+{
+  // ============================================================
+  // .vscode/extensions.json 用途說明
+  // ──────────────────────────────────────────────────────────────
+  // 此檔案定義專案「建議安裝」的 VS Code 擴充套件。
+  // 團隊成員開啟此專案時，VS Code 會自動提示安裝以下擴充套件，
+  // 確保每位成員都有一致的開發工具鏈。
+  // ============================================================
+
+  // --- 建議安裝 ---
+  "recommendations": [
+    "dbaeumer.vscode-eslint", // ESLint — JavaScript 靜態分析
+    "esbenp.prettier-vscode", // Prettier — 程式碼格式化
+    "eamodio.gitlens", // GitLens — 強化 Git 整合（逐行追溯、歷史比對）
+    "ms-python.python" // Python — Python 語言支援與偵錯
+  ],
+
+  // --- 不建議安裝（可能與專案設定衝突）---
+  "unwantedRecommendations": [
+    "hookyqr.beautify" // 與 Prettier 衝突
+  ]
+}

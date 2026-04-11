@@ -1,10 +1,55 @@
 {
-  "editor.formatOnSave": true,
+  // ============================================================
+  // .vscode/settings.json 用途說明
+  // ──────────────────────────────────────────────────────────────
+  // 此檔案定義「工作區層級」的 VS Code 設定，
+  // 所有 clone 此儲存庫的成員都會自動套用，
+  // 確保團隊擁有一致的編輯器行為。
+  // ============================================================
+
+  // --- 1. 編輯器基本行為 ---
+  "editor.formatOnSave": true, // 存檔時自動格式化
+  "editor.tabSize": 2, // 縮排寬度為 2 個空格
+  "editor.insertSpaces": true, // 以空格取代 Tab
+  "editor.bracketPairColorization.enabled": true, // 括號彩色配對
+
+  // 存檔時自動修正
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
+    "source.fixAll": "explicit", // 存檔時自動修復 Linter 錯誤
+    "source.organizeImports": "explicit" // 存檔時自動整理 import 順序
   },
-  "files.trimTrailingWhitespace": true,
+
+  // --- 2. Python & uv 虛擬環境優化 ---
+  // 自動導向 uv 建立的虛擬環境 (.venv)
+  "python.terminal.activateEnvInSelectedTerminal": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.typeCheckingMode": "basic", // 適合快速開發，若需嚴謹可改為 "strict"
+
+  // --- 3. 跨平台相容性設定 ---
+  // 換行符號強制為 LF，避免 Windows CRLF 造成跨平台差異
+  "files.eol": "\n",
   "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true
+  "files.trimTrailingWhitespace": true,
+
+  // --- 4. GitHub Copilot 協作強化 ---
+  // 讓 Copilot 優先參考專案內的相關文件
+  "github.copilot.chat.scope": "workspace",
+  "github.copilot.chat.search.semanticSearch": true,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "使用約定式提交格式：<type>(scope): description。類型：feat、fix、docs、refactor、test、chore。以英文撰寫，結尾不加句號。"
+    }
+  ],
+
+  // --- 5. 介面與搜尋優化 ---
+  // 隱藏不必要的資料夾，讓搜尋更精準
+  "files.exclude": {
+    "**/.git": true,
+    "**/__pycache__": true,
+    "**/.venv": true,
+    "**/.DS_Store": true
+  },
+  "search.useIgnoreFiles": true,
+  "explorer.compactFolders": false // 關閉資料夾緊縮，讓目錄樹結構更清晰
 }
