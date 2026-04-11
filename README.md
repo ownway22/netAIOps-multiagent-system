@@ -30,8 +30,14 @@ cd {{PROJECT_NAME}}
 | GitHub Copilot | `.github/prompts/` | 自訂 Prompt 檔案 |
 | GitHub Copilot | `.github/agents/` | 自訂 Agent 模式 |
 | GitHub Copilot | `.github/skills/` | 自訂 Skills |
+| Claude Code | `CLAUDE.md` | Claude Code 專案指引 |
+| Claude Code | `CLAUDE.local.md` | 個人本地備註（不提交） |
 | Claude Code | `.claude/settings.json` | Claude 專案設定 |
+| Claude Code | `.claude/settings.local.json` | 個人本地設定（不提交） |
 | Claude Code | `.claude/commands/` | 自訂 Slash Commands |
+| Claude Code | `.claude/rules/` | 自訂規則檔案 |
+| Claude Code | `.claude/skills/` | 自訂 Skills |
+| Claude Code | `.claude/agents/` | 自訂 Agents |
 | Claude Code | `AGENTS.md` | Agent 行為說明 |
 
 ## 專案結構
@@ -44,11 +50,17 @@ cd {{PROJECT_NAME}}
 │   ├── agents/                   # 自訂 agent 模式
 │   └── skills/                   # 自訂 skills
 ├── .claude/
-│   ├── settings.json             # Claude Code 設定
-│   └── commands/                 # Claude slash commands
+│   ├── settings.json             # Claude Code 專案設定
+│   ├── settings.local.json       # 個人本地設定（不提交）
+│   ├── commands/                 # Claude slash commands
+│   ├── rules/                    # Claude 規則檔案
+│   ├── skills/                   # Claude skills
+│   └── agents/                   # Claude agents
 ├── .vscode/
 │   └── settings.json             # VS Code 推薦設定
 ├── AGENTS.md                     # Agent 行為文件
+├── CLAUDE.md                     # Claude Code 專案指引
+├── CLAUDE.local.md               # 個人本地備註（不提交）
 └── README.md
 ```
 
