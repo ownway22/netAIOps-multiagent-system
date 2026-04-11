@@ -24,43 +24,81 @@ cd {{PROJECT_NAME}}
 
 本專案已預設以下 coding agent 的設定檔：
 
-| Agent | 設定位置 | 說明 |
-|-------|----------|------|
-| GitHub Copilot | `.github/copilot-instructions.md` | 全域行為指引 |
-| GitHub Copilot | `.github/prompts/` | 自訂 Prompt 檔案 |
-| GitHub Copilot | `.github/agents/` | 自訂 Agent 模式 |
-| GitHub Copilot | `.github/skills/` | 自訂 Skills |
-| Claude Code | `CLAUDE.md` | Claude Code 專案指引 |
-| Claude Code | `CLAUDE.local.md` | 個人本地備註（不提交） |
-| Claude Code | `.claude/settings.json` | Claude 專案設定 |
-| Claude Code | `.claude/settings.local.json` | 個人本地設定（不提交） |
-| Claude Code | `.claude/commands/` | 自訂 Slash Commands |
-| Claude Code | `.claude/rules/` | 自訂規則檔案 |
-| Claude Code | `.claude/skills/` | 自訂 Skills |
-| Claude Code | `.claude/agents/` | 自訂 Agents |
-| Claude Code | `AGENTS.md` | Agent 行為說明 |
+| Agent          | 設定位置                          | 說明                         |
+| -------------- | --------------------------------- | ---------------------------- |
+| GitHub Copilot | `.github/copilot-instructions.md` | 全域行為指引                 |
+| GitHub Copilot | `.github/instructions/`           | 條件式指令（依檔案類型套用） |
+| GitHub Copilot | `.github/prompts/`                | 自訂 Prompt 檔案             |
+| GitHub Copilot | `.github/agents/`                 | 自訂 Agent 模式              |
+| GitHub Copilot | `.github/skills/`                 | 自訂 Skills                  |
+| Claude Code    | `CLAUDE.md`                       | Claude Code 專案指引         |
+| Claude Code    | `CLAUDE.local.md`                 | 個人本地備註（不提交）       |
+| Claude Code    | `.claude/settings.json`           | Claude 專案設定              |
+| Claude Code    | `.claude/settings.local.json`     | 個人本地設定（不提交）       |
+| Claude Code    | `.claude/commands/`               | 自訂 Slash Commands          |
+| Claude Code    | `.claude/rules/`                  | 自訂規則檔案                 |
+| Claude Code    | `.claude/skills/`                 | 自訂 Skills                  |
+| Claude Code    | `.claude/agents/`                 | 自訂 Agents                  |
+| Claude Code    | `AGENTS.md`                       | Agent 行為說明               |
+| SpecKit        | `.specify/`                       | SpecKit 規格工作流程設定     |
 
 ## 專案結構
 
 ```
 .
 ├── .github/
-│   ├── copilot-instructions.md   # Copilot 全域指引
-│   ├── prompts/                  # 自訂 prompt 檔案
-│   ├── agents/                   # 自訂 agent 模式
-│   └── skills/                   # 自訂 skills
+│   ├── copilot-instructions.md       # Copilot 全域指引
+│   ├── instructions/                 # 條件式指令（依檔案類型套用）
+│   │   ├── angular.instructions.md
+│   │   ├── backend.instructions.md
+│   │   ├── code-review-generic.instructions.md
+│   │   ├── containerization-docker-best-practices.instructions.md
+│   │   ├── database.instructions.md
+│   │   ├── frontend.instructions.md
+│   │   ├── java.instructions.md
+│   │   ├── python.instructions.md
+│   │   ├── security-and-owasp.instructions.md
+│   │   └── taming-copilot.instructions.md
+│   ├── prompts/                      # 自訂 prompt 檔案
+│   │   ├── code-review.prompt.md
+│   │   ├── commit-message.prompt.md
+│   │   └── speckit.*.prompt.md
+│   ├── agents/                       # 自訂 agent 模式
+│   │   ├── planner.agent.md
+│   │   └── speckit.*.agent.md
+│   └── skills/                       # 自訂 skills
+│       ├── azure-devops-cli/
+│       ├── copilot-sdk/
+│       ├── gh-cli/
+│       ├── git-commit/
+│       └── microsoft-docs/
 ├── .claude/
-│   ├── settings.json             # Claude Code 專案設定
-│   ├── settings.local.json       # 個人本地設定（不提交）
-│   ├── commands/                 # Claude slash commands
-│   ├── rules/                    # Claude 規則檔案
-│   ├── skills/                   # Claude skills
-│   └── agents/                   # Claude agents
+│   ├── settings.json                 # Claude Code 專案設定
+│   ├── settings.local.json           # 個人本地設定（不提交）
+│   ├── commands/                     # Claude slash commands
+│   │   ├── plan.md
+│   │   └── review.md
+│   ├── rules/                        # Claude 規則檔案
+│   ├── skills/                       # Claude skills
+│   └── agents/                       # Claude agents
+├── .specify/                         # SpecKit 規格工作流程
+│   ├── memory/                       # 專案憲章與記憶
+│   │   └── constitution.md
+│   ├── scripts/                      # 自動化腳本
+│   └── templates/                    # 範本檔案
+│       ├── agent-file-template.md
+│       ├── checklist-template.md
+│       ├── plan-template.md
+│       ├── spec-template.md
+│       └── tasks-template.md
 ├── .vscode/
-│   └── settings.json             # VS Code 推薦設定
-├── AGENTS.md                     # Agent 行為文件
-├── CLAUDE.md                     # Claude Code 專案指引
-├── CLAUDE.local.md               # 個人本地備註（不提交）
+│   ├── extensions.json               # 推薦擴充套件
+│   ├── mcp.json                      # MCP 伺服器設定
+│   └── settings.json                 # VS Code 推薦設定
+├── AGENTS.md                         # Agent 行為文件
+├── CLAUDE.md                         # Claude Code 專案指引
+├── CLAUDE.local.md                   # 個人本地備註（不提交）
+├── .gitignore
 └── README.md
 ```
 
