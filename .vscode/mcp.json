@@ -4,26 +4,46 @@
       "id": "ado_org",
       "type": "promptString",
       "description": "Azure DevOps organization name (e.g. 'contoso')"
+    },
+    {
+      "id": "ado_domain",
+      "type": "promptString",
+      "description": "Repeat to enable specific domains: core, work, work-items, search, test-plans, repositories, wiki, pipelines, advanced-security."
     }
   ],
   "servers": {
-    "ado": {
+    "microsoft/azure-devops-mcp": {
       "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
-        "@azure-devops/mcp",
+        "@azure-devops/mcp@latest",
         "${input:ado_org}",
         "-d",
-        "core",
-        "work",
-        "work-items",
-        "search",
-        "test-plans",
-        "repositories",
-        "wiki",
-        "pipelines"
+        "${input:ado_domain}"
       ]
+    },
+    "azure-mcp": {
+      "type": "stdio",
+      "command": "wsl.exe",
+      "args": ["zsh", "-i", "-l", "-c", "azmcp server start"],
+      "env": {
+        "AZURE_USE_DEVICE_CODE": "true"
+      }
+    },
+    "microsoft-learn": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "drawio": {
+      "type": "stdio",
+      "command": "wsl.exe",
+      "args": ["zsh", "-i", "-l", "-c", "npx @next-ai-drawio/mcp-server@latest"]
+    },
+    "microsoft/markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["markitdown-mcp==0.0.1a4"]
     }
   }
 }

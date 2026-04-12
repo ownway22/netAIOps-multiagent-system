@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.py'
+applyTo: "**/*.py"
 ---
 
 # Python 程式碼規範
@@ -19,6 +19,12 @@ applyTo: '**/*.py'
 
 ## 最佳實踐
 
+- 使用 `uv` 管理 Python 套件與執行環境：
+  - 使用 `uv run` 執行 Python 程式碼（不使用 `python` 或 `.venv/bin/python`）
+  - 使用 `uv sync` 同步虛擬環境
+  - 使用 `uv add <package>` 安裝套件（不使用 `pip install`）
+  - 使用 `uv remove <package>` 移除套件
+  - 禁止直接使用 `pip`、`pip install` 或 `.venv/bin/python`
 - 使用**情境管理器**（`with`）處理資源（檔案、連線）。
 - 使用**串列推導式**取代 `map()`/`filter()`，以提升可讀性。
 - 明確處理例外 — 禁止使用空的 `except:`。
