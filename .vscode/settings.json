@@ -51,5 +51,26 @@
     "**/.DS_Store": true
   },
   "search.useIgnoreFiles": true,
-  "explorer.compactFolders": false // 關閉資料夾緊縮，讓目錄樹結構更清晰
+  "explorer.compactFolders": false, // 關閉資料夾緊縮，讓目錄樹結構更清晰
+
+  // --- 6. Markdown 預覽：貼近 GitHub 風格 ---
+  // 需配合擴充：bierner.markdown-preview-github-styles（GitHub CSS）
+  // 建議一併安裝：bierner.markdown-mermaid、bierner.markdown-checkbox、
+  //              bierner.markdown-emoji、bierner.markdown-yaml-preamble、
+  //              bierner.markdown-footnotes
+  // 安裝指令範例：
+  //   code --install-extension bierner.markdown-preview-github-styles
+  "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif",
+  "markdown.preview.fontSize": 14, // GitHub 預設字級
+  "markdown.preview.lineHeight": 1.6, // GitHub 預設行高
+  "markdown.preview.breaks": false, // 與 GitHub 一致：單一換行不轉 <br>
+  "markdown.preview.typographer": true, // 啟用智慧引號等排版優化
+  "markdown.preview.scrollPreviewWithEditor": true, // 預覽跟隨編輯器捲動
+  "markdown.preview.scrollEditorWithPreview": true, // 編輯器跟隨預覽捲動
+  "markdown.styles": [], // 不疊加自訂 CSS，避免覆蓋 GitHub 樣式
+
+  // --- 7. 推薦擴充提醒 ---
+  // 在工作區開啟時，VS Code 會主動推薦 .vscode/extensions.json 內列出的擴充。
+  // 若尚未建立該檔，可透過：命令面板 →「Extensions: Configure Recommended Extensions」
+  "extensions.ignoreRecommendations": false
 }
