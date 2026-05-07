@@ -262,7 +262,7 @@ Step 2–4 全在本機 DevUI 操作；Step 5 把 multi-agent workflow 部署回
 2. 按 **+ New agent**，type 選 **Prompt Agent**。
 3. **Name** 欄填下表對應名稱（要跟 `.env` 對齊）。
 4. **Model deployment** 選你 project 內的 chat model（建議 `gpt-4o`）。
-5. **Instructions** 欄打開 [`src/noa_workshop/n1_agents/instructions/`](src/noa_workshop/n1_agents/instructions/) 內對應的 markdown，全選整段貼進去。
+5. **Instructions** 欄打開 [`src/noa_workshop/n1_agents/instructions/`](noa-workshop/src/noa_workshop/n1_agents/instructions/) 內對應的 markdown，全選整段貼進去。
 6. **Tools** 欄留空（本 workshop 的 tool 由 Python 端注入；portal 不需要設）。
 7. 按 **Create**。
 
@@ -360,11 +360,11 @@ DevUI Workflow 類別與 Agent 類別最大的差別：**會畫出 workflow 的 
 
 部署的三個關鍵檔：
 
-| 檔案                                                                                                                 | 角色                                                                             |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`Dockerfile`](Dockerfile)                                                                                           | 把 workshop 包成 `linux/amd64` 容器，`CMD` 啟動 `hosted_agent`                   |
-| [`agent.manifest.yaml`](agent.manifest.yaml)                                                                         | `azd` / Foundry hosted-agent 部署清單，宣告 entrypoint 與環境變數                |
-| [`src/noa_workshop/n6_deployment/hosted_agent_deployer.py`](src/noa_workshop/n6_deployment/hosted_agent_deployer.py) | 一行命令完成「build → ACR push → `create_version` → 等到 `active` → smoke test」 |
+| 檔案                                                                                                                              | 角色                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [`Dockerfile`](noa-workshop/Dockerfile)                                                                                           | 把 workshop 包成 `linux/amd64` 容器，`CMD` 啟動 `hosted_agent`                   |
+| [`agent.manifest.yaml`](noa-workshop/agent.manifest.yaml)                                                                         | `azd` / Foundry hosted-agent 部署清單，宣告 entrypoint 與環境變數                |
+| [`src/noa_workshop/n6_deployment/hosted_agent_deployer.py`](noa-workshop/src/noa_workshop/n6_deployment/hosted_agent_deployer.py) | 一行命令完成「build → ACR push → `create_version` → 等到 `active` → smoke test」 |
 
 #### 一鍵部署
 
@@ -406,7 +406,7 @@ uv run python -m noa_workshop.n6_deployment.hosted_agent_deployer
 | 本地   | `NOA_USE_HOSTED_AGENTS=false`（預設） | `n1_agents/instructions/*.md` | Python `@tool` 函式                 |
 | Hosted | `NOA_USE_HOSTED_AGENTS=true`          | Foundry portal                | Python `@tool` 函式（runtime 注入） |
 
-兩種模式共用同一份 workflow / multi-agent code，只差在 [`n1_agents/agent_factory.py`](src/noa_workshop/n1_agents/agent_factory.py) 的 `make_agent()` 內部實作。
+兩種模式共用同一份 workflow / multi-agent code，只差在 [`n1_agents/agent_factory.py`](noa-workshop/src/noa_workshop/n1_agents/agent_factory.py) 的 `make_agent()` 內部實作。
 
 > ⚠️ 常見誤解：Foundry Agent Service 並不是「每個 agent 各自一個 endpoint+key」。實際是這樣：
 >
