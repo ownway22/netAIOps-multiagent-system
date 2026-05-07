@@ -214,7 +214,7 @@ noa-workshop/
 │   │   ├── single_agents.py             ← 4 個 single agent + get_all_single_agents()
 │   │   ├── orchestration_sequential.py  ← SequentialBuilder
 │   │   ├── orchestration_handoff.py     ← HandoffBuilder
-│   │   └── orchestration_magentic.py    ← MagenticBuilder（場景 C）
+│   │   └── orchestration_magentic.py    ← MagenticBuilder ()
 │   ├── n2_tools/
 │   │   ├── telemetry_tools.py
 │   │   ├── security_tools.py
