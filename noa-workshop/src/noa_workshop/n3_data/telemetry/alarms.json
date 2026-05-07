@@ -1,0 +1,55 @@
+{
+  "_comment": "Active alarms aligned with KPI anomalies. severity: P1 critical, P2 high, P3 medium, P4 low.",
+  "alarms": [
+    {
+      "alarm_id": "ALM-2026050501",
+      "severity": "P1",
+      "ts_raised": "2026-05-05T09:25:30Z",
+      "region": "north-transport-ring",
+      "node": "RTR-N1",
+      "type": "link_down",
+      "message": "Link LINK-N1-N2 LoS (loss-of-signal) detected on port xe-0/1/2",
+      "tags": ["fiber", "physical-layer"]
+    },
+    {
+      "alarm_id": "ALM-2026050502",
+      "severity": "P2",
+      "ts_raised": "2026-05-05T09:26:10Z",
+      "region": "north-transport-ring",
+      "node": "RTR-N2",
+      "type": "high_packet_loss",
+      "message": "Packet loss > 5% sustained 60s on aggregated link AE-RING-NORTH",
+      "tags": ["kpi-violation"]
+    },
+    {
+      "alarm_id": "ALM-2026050503",
+      "severity": "P3",
+      "ts_raised": "2026-05-05T09:27:00Z",
+      "region": "north-transport-ring",
+      "node": "RTR-N3",
+      "type": "latency_spike",
+      "message": "Round-trip latency spiked to 21ms (baseline 4ms)",
+      "tags": ["kpi-violation"]
+    },
+    {
+      "alarm_id": "ALM-2026050511",
+      "severity": "P2",
+      "ts_raised": "2026-05-05T14:11:45Z",
+      "region": "central-core-pop-1",
+      "node": "CORE-POP1-EDGE",
+      "type": "abnormal_traffic_volume",
+      "message": "Egress throughput +85% above weekly baseline; sustained 5 min",
+      "tags": ["traffic-anomaly", "potential-security"]
+    },
+    {
+      "alarm_id": "ALM-2026050512",
+      "severity": "P3",
+      "ts_raised": "2026-05-05T14:12:20Z",
+      "region": "central-core-pop-1",
+      "node": "CORE-POP1-EDGE",
+      "type": "suspicious_flow_signature",
+      "message": "Outbound flows matching IOC signature SIG-BOT-2104 detected",
+      "tags": ["security", "ioc-match"]
+    }
+  ]
+}

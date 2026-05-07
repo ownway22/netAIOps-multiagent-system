@@ -1,0 +1,57 @@
+{
+  "_comment": "Historical TMF621-style trouble tickets. Used by NOC Manager to find similar incidents.",
+  "tickets": [
+    {
+      "ticket_id": "TT-2025-09182",
+      "title": "Fiber cut on north transport ring CABLE-NB-007",
+      "category": "physical-layer",
+      "severity": "P1",
+      "region": "north-transport-ring",
+      "opened_at": "2025-12-04T03:18:00Z",
+      "closed_at": "2025-12-04T07:42:00Z",
+      "mttr_minutes": 264,
+      "root_cause": "construction excavator severed fiber on Banqiao section",
+      "resolution": "fiber splicing on-site by tech team; rerouted traffic via LINK-N4-N1 during repair",
+      "tags": ["fiber", "construction"]
+    },
+    {
+      "ticket_id": "TT-2025-09650",
+      "title": "Latency spike north transport ring",
+      "category": "kpi-violation",
+      "severity": "P2",
+      "region": "north-transport-ring",
+      "opened_at": "2026-01-22T11:05:00Z",
+      "closed_at": "2026-01-22T11:48:00Z",
+      "mttr_minutes": 43,
+      "root_cause": "transient congestion during failover drill",
+      "resolution": "no action required; congestion resolved after drill ended",
+      "tags": ["congestion", "drill"]
+    },
+    {
+      "ticket_id": "TT-2025-10110",
+      "title": "Suspicious egress traffic from CORE-POP1-EDGE",
+      "category": "security",
+      "severity": "P2",
+      "region": "central-core-pop-1",
+      "opened_at": "2026-02-14T22:33:00Z",
+      "closed_at": "2026-02-15T00:12:00Z",
+      "mttr_minutes": 99,
+      "root_cause": "compromised admin credential triggered outbound exfiltration attempt; matched IOC SIG-BOT-2098",
+      "resolution": "credential rotated; affected node isolated; full audit performed",
+      "tags": ["security", "ioc-match", "credential"]
+    },
+    {
+      "ticket_id": "TT-2025-10488",
+      "title": "False positive fiber alarm due to SFP miscalibration",
+      "category": "physical-layer",
+      "severity": "P3",
+      "region": "north-transport-ring",
+      "opened_at": "2026-03-09T08:01:00Z",
+      "closed_at": "2026-03-09T08:55:00Z",
+      "mttr_minutes": 54,
+      "root_cause": "faulty SFP module reporting LoS",
+      "resolution": "replaced SFP module on RTR-N1 port xe-0/1/2",
+      "tags": ["fiber", "hardware"]
+    }
+  ]
+}

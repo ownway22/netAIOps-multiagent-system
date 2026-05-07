@@ -1,0 +1,18 @@
+# Hosted-container runtime dependencies (kept minimal on purpose).
+# Aligned with the working reference at sample-code/ipm_multiagent/.
+# Dev / DevUI / OTLP-grpc are intentionally excluded — they are not needed
+# inside the Foundry container and pulling them in caused dependency
+# conflicts that prevented the container from reaching Running.
+
+# Microsoft Agent Framework — core SDK + Foundry provider
+agent-framework==1.2.2
+# Foundry Hosted Agent Responses-protocol runtime
+agent-framework-foundry-hosting==1.0.0a260429
+# Foundry Agent Service control-plane SDK (used by FoundryChatClient internals)
+azure-ai-projects>=2.1.0
+# Default credential chain (az login locally / managed identity in container)
+azure-identity>=1.19.0
+# Schema validation for tool inputs
+pydantic>=2.8
+# Used by tools that load JSON data
+typing-extensions>=4.12

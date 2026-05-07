@@ -1,0 +1,35 @@
+{
+  "_comment": "Spare parts inventory at depots.",
+  "parts": [
+    {
+      "part_id": "FIBER-SPLICE-KIT-A",
+      "name": "光纖熔接工具組（含 12 芯模組）",
+      "depot": "TPE-Banqiao-Depot",
+      "stock": 4
+    },
+    {
+      "part_id": "SFP-10G-LR",
+      "name": "10G LR SFP+ 模組",
+      "depot": "TPE-Banqiao-Depot",
+      "stock": 12
+    },
+    {
+      "part_id": "SFP-100G-CWDM4",
+      "name": "100G CWDM4 模組",
+      "depot": "TPE-Neihu-Depot",
+      "stock": 3
+    },
+    {
+      "part_id": "PATCH-FIBER-50M",
+      "name": "50 公尺光纖跳線",
+      "depot": "TPE-Banqiao-Depot",
+      "stock": 8
+    },
+    {
+      "part_id": "ROUTER-LINECARD-X1",
+      "name": "傳輸路由器替換 line-card X1",
+      "depot": "TYO-Taoyuan-DC1",
+      "stock": 1
+    }
+  ]
+}

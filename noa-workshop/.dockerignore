@@ -1,0 +1,22 @@
+# Files we never want shipped to ACR Tasks / Foundry container.
+# Mirrors sample-code/ipm_multiagent/.dockerignore.
+
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv
+venv
+*.egg-info
+.mypy_cache
+.ruff_cache
+.pytest_cache
+tests
+docs
+sample-code
+.git
+.github
+.vscode
+*.md
+!README.md

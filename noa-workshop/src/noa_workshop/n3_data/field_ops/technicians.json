@@ -1,0 +1,45 @@
+{
+  "_comment": "Field technicians on standby. skill values map to alarms-needing-dispatch.",
+  "technicians": [
+    {
+      "id": "TECH-001",
+      "name": "陳偉強",
+      "base_site": "TPE-Banqiao",
+      "skills": ["fiber-splicing", "tower-climbing"],
+      "status": "available",
+      "phone": "+886-912-345-001"
+    },
+    {
+      "id": "TECH-002",
+      "name": "林雅婷",
+      "base_site": "TPE-Neihu",
+      "skills": ["fiber-splicing", "rf-tuning"],
+      "status": "available",
+      "phone": "+886-912-345-002"
+    },
+    {
+      "id": "TECH-003",
+      "name": "黃志明",
+      "base_site": "TPE-Songshan",
+      "skills": ["hardware-swap", "console-debug"],
+      "status": "on-shift",
+      "phone": "+886-912-345-003"
+    },
+    {
+      "id": "TECH-004",
+      "name": "Patricia Lee",
+      "base_site": "TYO-Taoyuan-DC1",
+      "skills": ["data-center", "hardware-swap"],
+      "status": "available",
+      "phone": "+886-912-345-004"
+    },
+    {
+      "id": "TECH-005",
+      "name": "王俊傑",
+      "base_site": "TPE-Xinyi",
+      "skills": ["fiber-splicing", "hardware-swap"],
+      "status": "off-duty",
+      "phone": "+886-912-345-005"
+    }
+  ]
+}

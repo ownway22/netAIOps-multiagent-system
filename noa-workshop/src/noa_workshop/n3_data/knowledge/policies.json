@@ -1,0 +1,47 @@
+{
+  "_comment": "Compact policy and SLA catalog. Agents look these up to validate incidents.",
+  "sla": {
+    "north-transport-ring": {
+      "latency_ms_max": 10.0,
+      "packet_loss_pct_max": 0.1,
+      "availability_pct_min": 99.95
+    },
+    "central-core-pop-1": {
+      "latency_ms_max": 5.0,
+      "packet_loss_pct_max": 0.05,
+      "availability_pct_min": 99.99
+    },
+    "south-access-cluster": {
+      "latency_ms_max": 15.0,
+      "packet_loss_pct_max": 0.2,
+      "availability_pct_min": 99.9
+    }
+  },
+  "security_policies": [
+    {
+      "policy_id": "POL-EGRESS-001",
+      "title": "Egress allow-list for core PoP",
+      "rule": "Outbound traffic from CORE-* nodes must match the maintained egress allow-list. Unmatched destinations require security review.",
+      "violation_severity": "P2"
+    },
+    {
+      "policy_id": "POL-CHANGE-002",
+      "title": "Read-only default for agents",
+      "rule": "AI agents are forbidden from executing any device config change, ACL update, or interface shutdown. All such actions require explicit human approval.",
+      "violation_severity": "P1"
+    },
+    {
+      "policy_id": "POL-CRED-003",
+      "title": "Service account credential rotation",
+      "rule": "Compromised or suspected-compromised credentials must be rotated within 1 hour and the affected node placed under elevated monitoring for 24 hours.",
+      "violation_severity": "P1"
+    }
+  ],
+  "blocked_indicators": [
+    "shutdown interface",
+    "no shutdown",
+    "ip access-list",
+    "config terminal",
+    "delete vlan"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "_comment": "Simplified network topology. Cable IDs map to alarm types so trainees can trace from alarm to cable.",
+  "regions": {
+    "north-transport-ring": {
+      "nodes": [
+        {
+          "id": "RTR-N1",
+          "type": "transport-router",
+          "site": "TPE-Neihu",
+          "lat": 25.0823,
+          "lon": 121.5683
+        },
+        {
+          "id": "RTR-N2",
+          "type": "transport-router",
+          "site": "TPE-Banqiao",
+          "lat": 25.0143,
+          "lon": 121.4655
+        },
+        {
+          "id": "RTR-N3",
+          "type": "transport-router",
+          "site": "TPE-Songshan",
+          "lat": 25.0497,
+          "lon": 121.5746
+        },
+        {
+          "id": "RTR-N4",
+          "type": "transport-router",
+          "site": "TPE-Xinyi",
+          "lat": 25.033,
+          "lon": 121.5654
+        }
+      ],
+      "links": [
+        {
+          "id": "LINK-N1-N2",
+          "from": "RTR-N1",
+          "to": "RTR-N2",
+          "media": "fiber",
+          "cable_id": "CABLE-NB-007",
+          "length_km": 18.4,
+          "status": "down"
+        },
+        {
+          "id": "LINK-N2-N3",
+          "from": "RTR-N2",
+          "to": "RTR-N3",
+          "media": "fiber",
+          "cable_id": "CABLE-NB-009",
+          "length_km": 12.1,
+          "status": "up"
+        },
+        {
+          "id": "LINK-N3-N4",
+          "from": "RTR-N3",
+          "to": "RTR-N4",
+          "media": "fiber",
+          "cable_id": "CABLE-NB-011",
+          "length_km": 6.7,
+          "status": "up"
+        },
+        {
+          "id": "LINK-N4-N1",
+          "from": "RTR-N4",
+          "to": "RTR-N1",
+          "media": "fiber",
+          "cable_id": "CABLE-NB-013",
+          "length_km": 14.2,
+          "status": "up"
+        }
+      ]
+    },
+    "central-core-pop-1": {
+      "nodes": [
+        {
+          "id": "CORE-POP1-EDGE",
+          "type": "core-edge",
+          "site": "TYO-Taoyuan-DC1",
+          "lat": 24.9938,
+          "lon": 121.3014
+        },
+        {
+          "id": "CORE-POP1-AGG",
+          "type": "core-agg",
+          "site": "TYO-Taoyuan-DC1",
+          "lat": 24.9938,
+          "lon": 121.3014
+        }
+      ],
+      "links": [
+        {
+          "id": "LINK-EDGE-AGG",
+          "from": "CORE-POP1-EDGE",
+          "to": "CORE-POP1-AGG",
+          "media": "dac",
+          "status": "up"
+        }
+      ]
+    }
+  }
+}

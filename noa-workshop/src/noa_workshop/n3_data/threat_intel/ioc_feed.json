@@ -1,0 +1,52 @@
+{
+  "_comment": "Threat intel feed: signatures and known-bad indicators. Updated 2026-05-05T08:00Z.",
+  "signatures": [
+    {
+      "sig_id": "SIG-BOT-2104",
+      "family": "infostealer",
+      "ttp": "exfiltration via DNS tunneling",
+      "first_seen": "2026-04-28",
+      "confidence": "high"
+    },
+    {
+      "sig_id": "SIG-DDoS-0815",
+      "family": "ddos-amplifier",
+      "ttp": "memcached reflection",
+      "first_seen": "2026-03-10",
+      "confidence": "high"
+    },
+    {
+      "sig_id": "SIG-BOT-2098",
+      "family": "credential-abuse",
+      "ttp": "stolen admin token outbound",
+      "first_seen": "2026-02-14",
+      "confidence": "high"
+    }
+  ],
+  "indicators": [
+    {
+      "indicator": "203.0.113.45",
+      "type": "ip",
+      "context": "Known C2 in infostealer campaign",
+      "linked_sig": "SIG-BOT-2104"
+    },
+    {
+      "indicator": "198.51.100.7",
+      "type": "ip",
+      "context": "DDoS reflector pool",
+      "linked_sig": "SIG-DDoS-0815"
+    },
+    {
+      "indicator": "exfil.malicious-domain.example",
+      "type": "domain",
+      "context": "DNS tunneling endpoint",
+      "linked_sig": "SIG-BOT-2104"
+    },
+    {
+      "indicator": "9c1185a5c5e9fc54612808977ee8f548b2258d31",
+      "type": "sha1",
+      "context": "Trojanized admin tool variant",
+      "linked_sig": "SIG-BOT-2098"
+    }
+  ]
+}

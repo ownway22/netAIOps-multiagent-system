@@ -1,0 +1,155 @@
+{
+  "_comment": "5 分鐘間隔的 KPI 時序樣本（packet_loss_pct, latency_ms, throughput_gbps）。場景 A 在 2026-05-05 09:25 注入鏈路丟包飆升；場景 C 在 2026-05-05 14:10 注入北向流量異常。",
+  "regions": {
+    "north-transport-ring": {
+      "baseline": {
+        "packet_loss_pct": 0.02,
+        "latency_ms": 4.5,
+        "throughput_gbps": 38.0
+      },
+      "sla": { "packet_loss_pct_max": 0.1, "latency_ms_max": 10.0 },
+      "samples": [
+        {
+          "ts": "2026-05-05T09:00:00Z",
+          "packet_loss_pct": 0.02,
+          "latency_ms": 4.4,
+          "throughput_gbps": 37.6
+        },
+        {
+          "ts": "2026-05-05T09:05:00Z",
+          "packet_loss_pct": 0.03,
+          "latency_ms": 4.6,
+          "throughput_gbps": 38.1
+        },
+        {
+          "ts": "2026-05-05T09:10:00Z",
+          "packet_loss_pct": 0.02,
+          "latency_ms": 4.5,
+          "throughput_gbps": 38.4
+        },
+        {
+          "ts": "2026-05-05T09:15:00Z",
+          "packet_loss_pct": 0.02,
+          "latency_ms": 4.5,
+          "throughput_gbps": 38.0
+        },
+        {
+          "ts": "2026-05-05T09:20:00Z",
+          "packet_loss_pct": 0.04,
+          "latency_ms": 4.7,
+          "throughput_gbps": 37.9
+        },
+        {
+          "ts": "2026-05-05T09:25:00Z",
+          "packet_loss_pct": 6.81,
+          "latency_ms": 18.4,
+          "throughput_gbps": 12.3
+        },
+        {
+          "ts": "2026-05-05T09:30:00Z",
+          "packet_loss_pct": 7.42,
+          "latency_ms": 21.7,
+          "throughput_gbps": 10.1
+        },
+        {
+          "ts": "2026-05-05T09:35:00Z",
+          "packet_loss_pct": 7.18,
+          "latency_ms": 22.0,
+          "throughput_gbps": 9.8
+        }
+      ]
+    },
+    "central-core-pop-1": {
+      "baseline": {
+        "packet_loss_pct": 0.01,
+        "latency_ms": 2.1,
+        "throughput_gbps": 92.0
+      },
+      "sla": { "packet_loss_pct_max": 0.05, "latency_ms_max": 5.0 },
+      "samples": [
+        {
+          "ts": "2026-05-05T13:50:00Z",
+          "packet_loss_pct": 0.01,
+          "latency_ms": 2.0,
+          "throughput_gbps": 91.4
+        },
+        {
+          "ts": "2026-05-05T13:55:00Z",
+          "packet_loss_pct": 0.01,
+          "latency_ms": 2.1,
+          "throughput_gbps": 91.8
+        },
+        {
+          "ts": "2026-05-05T14:00:00Z",
+          "packet_loss_pct": 0.02,
+          "latency_ms": 2.2,
+          "throughput_gbps": 92.6
+        },
+        {
+          "ts": "2026-05-05T14:05:00Z",
+          "packet_loss_pct": 0.02,
+          "latency_ms": 2.4,
+          "throughput_gbps": 95.1
+        },
+        {
+          "ts": "2026-05-05T14:10:00Z",
+          "packet_loss_pct": 0.04,
+          "latency_ms": 3.1,
+          "throughput_gbps": 142.7
+        },
+        {
+          "ts": "2026-05-05T14:15:00Z",
+          "packet_loss_pct": 0.06,
+          "latency_ms": 3.8,
+          "throughput_gbps": 168.3
+        },
+        {
+          "ts": "2026-05-05T14:20:00Z",
+          "packet_loss_pct": 0.07,
+          "latency_ms": 4.4,
+          "throughput_gbps": 171.9
+        },
+        {
+          "ts": "2026-05-05T14:25:00Z",
+          "packet_loss_pct": 0.06,
+          "latency_ms": 4.1,
+          "throughput_gbps": 165.4
+        }
+      ]
+    },
+    "south-access-cluster": {
+      "baseline": {
+        "packet_loss_pct": 0.05,
+        "latency_ms": 6.2,
+        "throughput_gbps": 22.0
+      },
+      "sla": { "packet_loss_pct_max": 0.2, "latency_ms_max": 15.0 },
+      "samples": [
+        {
+          "ts": "2026-05-05T09:00:00Z",
+          "packet_loss_pct": 0.05,
+          "latency_ms": 6.1,
+          "throughput_gbps": 21.8
+        },
+        {
+          "ts": "2026-05-05T09:05:00Z",
+          "packet_loss_pct": 0.06,
+          "latency_ms": 6.3,
+          "throughput_gbps": 22.2
+        },
+        {
+          "ts": "2026-05-05T14:00:00Z",
+          "packet_loss_pct": 0.04,
+          "latency_ms": 6.0,
+          "throughput_gbps": 21.9
+        },
+        {
+          "ts": "2026-05-05T14:25:00Z",
+          "packet_loss_pct": 0.05,
+          "latency_ms": 6.1,
+          "throughput_gbps": 22.1
+        }
+      ]
+    }
+  }
+}
