@@ -38,9 +38,6 @@
 | **Foundry portal**    | 在 Foundry portal 建立 4 個 Prompt Agent，切換到 hosted 模式                               |
 | **Hosted Agent 部署** | 把 Handoff multi-agent 包成容器，用 `AIProjectClient.agents.create_version` 部署到 Foundry |
 
-> 提供 **擬真電信資料集**（KPI 時序、告警、topology、SOP、ticket、IOC、技師排班）。
-> 模擬 NOA 架構如何處理「**光纖中斷**」與「**安全事件**」的 multi-agent 系統。
-
 ---
 
 ## 前置需求
@@ -49,6 +46,11 @@
 2. **Azure CLI** 並登入：`az login`
 3. **Microsoft Foundry project**，內含一個已部署的 chat 模型（建議 `gpt-4o`）
 4. **Docker / Azure CLI ACR 擴充**（只有 Step 5 部署 hosted agent 需要）
+5. **Clone 本專案到本機**：
+
+   ```bash
+   git clone https://github.com/ownway22/netAIOps-multiagent-system
+   ```
 
 ---
 
@@ -136,7 +138,7 @@ flowchart LR
 | **安全層**       | `ioc_feed.json`                   | TIP（MISP、Anomali、Recorded Future）、SIEM（Splunk、Sentinel）                     | SOC / Threat Intel         |
 | **歷史／回饋層** | `historical_tickets.json`         | TTS / ITSM（ServiceNow ITSM、BMC Remedy、TM Forum TMF621）                          | NOC + SRE                  |
 
-> 這套資料切面是訓練多代理（multi-agent）AIOps 系統很標準的素材：每個 agent 對應現實世界的一個專業團隊，每份資料都映射到真實 OSS/BSS 系統的某個模組。
+> 提供 **擬真電信資料集**（KPI 時序、告警、topology、SOP、ticket、IOC、技師排班）。
 
 ---
 
@@ -378,8 +380,8 @@ uv run python -m noa_workshop.smoke_test
 
 ### 🛠️ 技術基礎：Microsoft Agent Framework
 
-1. [Microsoft Agent Framework (Python) 總覽](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-python) — 框架入口
-2. [Microsoft Agent Framework v1.0 發佈](https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-version-1-0/) — v1.0 發佈說明
+1. [Microsoft Agent Framework](https://github.com/microsoft/agent-framework) — 用於開發與協調 Multi agents 的開源框架，以常見的開源標準為主，包括 OpenTelemetry、MCP、A2A 等
+2. [Microsoft Agent Framework SDK (Python) 總覽](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-python) — 框架入口
 3. [Microsoft Agent Framework — Workflows](https://learn.microsoft.com/agent-framework/workflows/) — Workflow 概念與用法
 
 ### 🔀 進階：三種 Orchestration 模式
