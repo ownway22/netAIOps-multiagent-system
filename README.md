@@ -1,6 +1,6 @@
 # NOA Multi-Agent Workshop
 
-> 我們把 Microsoft NOA 簡化成 **4 個專業 agent x 3 種 orchestration 模式**，做一套擬真電信網路 incident 的 multi-agent 系統。
+> 我們把 [Microsoft NOA](https://techcommunity.microsoft.com/blog/telecommunications-industry-blog/evolving-the-network-operations-agent-framework-driving-the-next-wave-of-autonom/4496607) 簡化成 **4 個專業 agent x 3 種 orchestration 模式**，做一套擬真電信網路 incident 的 multi-agent 系統。
 > 並透過 **3 個網路維運場景 x 10 個擬真資料集**，學習 Micrososft NOA 的核心精神。
 > 最後把整個 multi-agent 系統的執行環境 host 在 **Microsoft Foundry** 服務中，並發布至 **Microsoft Teams** 頻道，以協助一般使用者解決網路維運相關的技術問題。
 
