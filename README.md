@@ -380,7 +380,7 @@ uv run python -m noa_workshop.smoke_test
 
 ### 🛠️ 技術基礎：Microsoft Agent Framework
 
-1. [Microsoft Agent Framework](https://github.com/microsoft/agent-framework) — 用於開發與協調 Multi agents 的開源框架，以常見的開源標準為主，包括 OpenTelemetry、MCP、A2A 等
+1. [Microsoft Agent Framework](https://github.com/microsoft/agent-framework) — Multi-agent 開源框架（OpenTelemetry / MCP / A2A）
 2. [Microsoft Agent Framework SDK (Python) 總覽](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-python) — 框架入口
 3. [Microsoft Agent Framework — Workflows](https://learn.microsoft.com/agent-framework/workflows/) — Workflow 概念與用法
 
