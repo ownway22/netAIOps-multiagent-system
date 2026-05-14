@@ -337,6 +337,74 @@ uv run python -m noa_workshop.n6_deployment.hosted_agent_deployer
 部署成功後，整個 multi-agent Handoff workflow 變成 Foundry 上**一個 hosted agent**，
 可以在 portal 直接呼叫，也可以從外部 app 用 OpenAI Responses 協定打。
 
+#### ⚠️ 部署完成後必做：補 RBAC 給 hosted agent 的 instance identity
+
+> 每次 `create_version(...)` 或 rename hosted agent，Foundry 都會自動產生一個**全新的 `instance_identity` service principal**，且**預設零權限**。
+> 沒補 RBAC 之前，到 portal 跟 agent 對話會直接收到 `PermissionDenied`，從外部呼 `/responses` 則會被 platform gateway 在 RBAC 階段擋掉、container log 也看不到請求進來。
+
+**典型錯誤訊息（在 Foundry portal chat 上會直接看到）：**
+
+```text
+PermissionDenied
+The principal `<instance-identity-principal-id>` lacks the required data action
+`Microsoft.CognitiveServices/accounts/AIServices/agents/read` to perform
+`GET /api/projects/{projectName}/storage/*` operation.
+```
+
+##### 步驟 1：抓出新的 instance identity principal id
+
+```bash
+# 注意：list_versions / get 拿到的 instance_identity.principal_id 才是要授權的對象
+uv run python - <<'PY'
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import AzureCliCredential
+
+project = AIProjectClient(
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+    credential=AzureCliCredential(),
+    allow_preview=True,
+)
+agent = project.agents.get(agent_name=os.environ.get("HOSTED_AGENT_NAME", "noa-multiagent-hosted"))
+print("instance_identity.principal_id =", agent.instance_identity["principal_id"])
+PY
+```
+
+##### 步驟 2：把下面三個角色補到這個 principal
+
+| 角色                             | Scope                                                                              |
+| -------------------------------- | ---------------------------------------------------------------------------------- |
+| `Azure AI User`                  | project（`.../Microsoft.CognitiveServices/accounts/<account>/projects/<project>`） |
+| `Cognitive Services OpenAI User` | account（`.../Microsoft.CognitiveServices/accounts/<account>`）                    |
+| `Cognitive Services User`        | account（`.../Microsoft.CognitiveServices/accounts/<account>`）                    |
+
+```bash
+# 把這四個變數換成你的環境
+PRINCIPAL_ID="<上一步印出的 principal id>"
+SUBSCRIPTION_ID="<your-sub-id>"
+RG="<your-resource-group>"
+ACCOUNT="<your-foundry-account>"      # 例如 ai-account-azc475mssqyvc
+PROJECT="<your-foundry-project>"      # 例如 ai-project-dev
+
+ACCOUNT_SCOPE="/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RG/providers/Microsoft.CognitiveServices/accounts/$ACCOUNT"
+PROJECT_SCOPE="$ACCOUNT_SCOPE/projects/$PROJECT"
+
+az role assignment create --assignee "$PRINCIPAL_ID" --role "Azure AI User"                  --scope "$PROJECT_SCOPE"
+az role assignment create --assignee "$PRINCIPAL_ID" --role "Cognitive Services OpenAI User" --scope "$ACCOUNT_SCOPE"
+az role assignment create --assignee "$PRINCIPAL_ID" --role "Cognitive Services User"        --scope "$ACCOUNT_SCOPE"
+```
+
+##### 步驟 3：驗證
+
+```bash
+# 應該看得到三筆 role assignment
+az role assignment list --assignee "$PRINCIPAL_ID" --all -o table
+```
+
+授權生效後（一般幾秒，最久約 1–2 分鐘），回到 Foundry portal 跟 hosted agent 對話、或重跑 `hosted_agent_deployer.py` 的 smoke test，Responses API 即可正常運作。
+
+> 💡 **重點**：每次重新 `create_version` 或 rename agent 都要重做這個步驟，因為 instance identity 會換新的 principal id，舊的授權對新 SP 沒效用。
+
 ### Step 5 — 發布到 Teams
 
 > 把 Step 4 部署的 Foundry hosted agent 透過 portal 發布到 Microsoft Teams 頻道，

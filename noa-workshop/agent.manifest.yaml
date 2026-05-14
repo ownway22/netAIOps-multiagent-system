@@ -1,21 +1,22 @@
-# NOA workshop 多-agent workflow 的 azd-managed agent manifest。
-# 由 `azd ai agent init` 與 `azd ai agent up` 讀取使用。
+# azd-managed agent manifest for the NOA workshop multi-agent workflow.
+# Used by `azd ai agent init` and `azd ai agent up`.
 #
-# 參考：https://learn.microsoft.com/agent-framework/hosting/foundry-hosted-agent
+# Reference: https://learn.microsoft.com/agent-framework/hosting/foundry-hosted-agent
 
 name: noa-multiagent-hosted
 description: NOA workshop — Handoff multi-agent team (NOC Manager + telemetry + security + field_ops) coordinated via HandoffBuilder, exposed as one Foundry hosted agent
 runtime: python
-# 容器進入點會跑 `python -m noa_workshop.n6_deployment.hosted_agent`，
-# 它會呼叫 `make_server()` 延後組裝 workflow 並啟動服務。
-entrypoint: noa_workshop.n6_deployment.hosted_agent:make_server
+# Container entrypoint runs `python -m noa_workshop.n6_deployment.hosted_agent_server`,
+# which calls `make_server()` to build the workflow lazily and start serving.
+entrypoint: noa_workshop.n6_deployment.hosted_agent_server:make_server
 
-# 容器映像檔由專案根目錄的 Dockerfile 建置。
+# Container image is built from the Dockerfile in the project root.
 container:
   dockerfile: Dockerfile
   port: 8088
 
-# 執行時必須存在的環境變數。`azd up` 時若本地環境裡沒有這些變數，azd 會跳出來問你。
+# Environment variables that must exist at runtime. azd will prompt for these
+# during `azd up` if they are not already in the local environment.
 env:
   - name: FOUNDRY_PROJECT_ENDPOINT
     required: true

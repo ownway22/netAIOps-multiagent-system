@@ -1,16 +1,17 @@
 # syntax=docker/dockerfile:1.7
 # ----------------------------------------------------------------------------
-# NOA Workshop — Foundry Hosted Agent 容器映像檔（linux/amd64）
+# NOA Workshop — Foundry Hosted Agent container (linux/amd64)
 #
-# 與 sample-code/ipm_multiagent/Dockerfile 對齊（已驗證可用的參考範本）。關鍵選擇：
-#   1. 用 requirements.txt（runtime 才需要的相依）取代 `pip install .`，
-#      避免 DevUI / OTLP-grpc / 開發工具進來與 agent-framework==1.2.2 +
-#      agent-framework-foundry-hosting=1.0.0a* 起衝突。
-#   2. 透過 PYTHONPATH=/app/src 直接執行 package，不必先 pip install wheel。
-#      runtime 用到的資料就在 package 內的 `src/noa_workshop/n3_data/`，
-#      只要 `COPY src ./src` 一起搬進來，
-#      `Path(__file__).parents[1] / "n3_data"` 一定找得到。
-#   3. Layer cache：先複製 requirements，最後才複製程式碼。
+# Aligned with sample-code/ipm_multiagent/Dockerfile (a verified-working
+# reference). Key choices:
+#   1. Use requirements.txt (runtime-only deps) instead of `pip install .`
+#      to avoid pulling in DevUI / OTLP-grpc / dev tooling that conflicted
+#      with agent-framework==1.2.2 + agent-framework-foundry-hosting=1.0.0a*.
+#   2. Run the package via PYTHONPATH=/app/src — no wheel install needed.
+#      The runtime data lives inside the package at
+#      `src/noa_workshop/n3_data/`, so it ships with `COPY src ./src`
+#      and `Path(__file__).parents[1] / "n3_data"` always resolves.
+#   3. Layer cache: requirements first, code last.
 # ----------------------------------------------------------------------------
 FROM python:3.11-slim AS runtime
 
@@ -25,20 +26,20 @@ RUN apt-get update \
 
 WORKDIR /app
 
-# 先安裝 runtime 相依套件，後面動到程式碼也不會搞壞 pip 的 layer cache。
-# `--pre` 是必要的，因為 agent-framework-foundry-hosting==1.0.0a260429 是
-# pre-release 版本。
+# Install runtime dependencies first so subsequent code changes don't bust
+# the pip layer cache. `--pre` is required because
+# agent-framework-foundry-hosting==1.0.0a260429 is a pre-release tag.
 COPY requirements.txt ./
 RUN pip install --no-cache-dir --pre -r requirements.txt
 
-# 複製 package 原始碼（runtime JSON / markdown 資料就在
-# /app/src/noa_workshop/n3_data/，所以一次性 copy src 就夠了）。
+# Copy package source (the runtime JSON/markdown data lives at
+# /app/src/noa_workshop/n3_data/, so a single src copy is enough).
 COPY src ./src
 
-# 不裝 wheel 也能 import：直接把 src 加進 PYTHONPATH。
+# Make the source tree importable without installing a wheel.
 ENV PYTHONPATH=/app/src
 
-# Foundry hosted-agent 規範：Responses 通訊協定走 8088 埠。
+# Foundry hosted-agent contract — Responses protocol on 8088.
 EXPOSE 8088
 
-CMD ["python", "-m", "noa_workshop.n6_deployment.hosted_agent"]
+CMD ["python", "-m", "noa_workshop.n6_deployment.hosted_agent_server"]

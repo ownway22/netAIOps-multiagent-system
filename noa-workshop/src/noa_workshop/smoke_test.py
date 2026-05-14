@@ -1,18 +1,10 @@
-"""Smoke test：驗證環境是否就緒。
+"""M1 — Hello Agent smoke test.
 
-用途
-----
-建立一個帶工具的 telemetry agent，問它一個會觸發 tool call 的問題。
-看到表格化回覆代表 `.env` / `az login` / model deployment 都通了。
+Builds the telemetry_analyzer agent (which has tools) and asks it a question
+that should trigger a tool call. Use this to verify your .env, az login, and
+model deployment are wired up correctly before tackling M2-M4.
 
-關鍵設計
---------
-- 用 `make_agent("telemetry_analyzer")` 直接拿到綁好工具的 agent。
-- 問題用繁中提問，agent 應該會呼叫 `query_kpi_metrics` 並用 baseline 比對。
-
-如何驗證
---------
-::
+Run::
 
     uv run python -m noa_workshop.smoke_test
 """
